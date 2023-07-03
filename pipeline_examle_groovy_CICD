@@ -1,0 +1,21 @@
+pipeline {
+  agent any
+
+  stages {
+    stage('build') {
+      steps {
+         sh "docker pull httpd"
+      }
+    }
+    stage('test') {
+      steps {
+        sh "docker images"
+      }
+    }
+    stage('release') {
+      steps {
+        sh "docker run -d --name web1 -p 8081:80 httpd"
+      }
+    }
+  }
+}
